@@ -22,22 +22,17 @@ function App() {
 
   return (
     <div className="app-container">
-      {/* Hero Section */}
       <Hero />
-  
-      {/* Main Content */}
-      <main className="flex-1 pt-24 p-4 max-w-7xl mx-auto w-full bg-card-darker rounded-lg shadow-custom-lg">
-        {/* Explore NFTs Section */}
-        <div className="text-center mt-1 mb-16 bg-card-light p-8 rounded-lg shadow-custom">
-          <h1 className="text-4xl font-bold text-[var(--text-primary)]">Explore NFTs</h1>
-          <p className="text-[var(--text-secondary)] mt-2 max-w-2xl mx-auto">
-            Discover unique digital collectibles and the stories behind them
-          </p>
-        </div>
-  
-        {/* Features Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 mb-30 bg-card-darker p-8 rounded-lg shadow-custom">
-          <div className="feature-card bg-card-light">
+      <main className="flex-1 pt-24 p-4 max-w-7xl mx-auto w-full">
+      <div className="text-center mt-1 mb-16"> 
+        <h1 className="text-4xl font-bold text-[var(--text-primary)]">Explore NFTs</h1>
+        <p className="text-[var(--text-secondary)] mt-2 max-w-2xl mx-auto">
+          Discover unique digital collectibles and the stories behind them
+        </p>
+      </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 mb-30">
+          <div className="feature-card">
             <div className="feature-icon-wrapper">
               <Palette className="feature-icon" />
             </div>
@@ -46,16 +41,14 @@ function App() {
               Create your own digital masterpiece and make it available for collectors
             </p>
           </div>
-          <div className="feature-card bg-card">
+          <div className="feature-card">
             <div className="feature-icon-wrapper">
               <LayoutGrid className="feature-icon" />
             </div>
             <h2 className="text-xl font-bold text-[var(--text-primary)]">Manage NFTs</h2>
-            <p className="text-[var(--text-secondary)] mt-2">
-              View and manage your collection of minted NFTs
-            </p>
+            <p className="text-[var(--text-secondary)] mt-2">View and manage your collection of minted NFTs</p>
           </div>
-          <div className="feature-card bg-card-light">
+          <div className="feature-card">
             <div className="feature-icon-wrapper">
               <ShoppingBag className="feature-icon" />
             </div>
@@ -65,31 +58,24 @@ function App() {
             </p>
           </div>
         </div>
-  
-        {/* Featured Collection Section */}
-        <div className="bg-card p-8 rounded-lg mt-16 shadow-custom-lg">
-          <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-8">Featured Collection</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-            {tokenMetaDataArray.map((token, i) => (
-              <NFTCard
-                key={token.name.split(" ").join("")}
-                metadata={token}
-                mintPrice={mintPrice}
-                tokenId={i}
-                nextTokenId={nextTokenId}
-                mintNFT={mintToken}
-              />
-            ))}
-          </div>
+
+        <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-8">Featured Collection</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+          {tokenMetaDataArray.map((token, i) => (
+            <NFTCard
+              key={token.name.split(" ").join("")}
+              metadata={token}
+              mintPrice={mintPrice}
+              tokenId={i}
+              nextTokenId={nextTokenId}
+              mintNFT={mintToken}
+            />
+          ))}
         </div>
       </main>
-  
-      {/* Footer */}
       <Footer />
     </div>
-  );
-  
-  
+  )
 }
 
 export default App
