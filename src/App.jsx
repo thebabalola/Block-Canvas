@@ -1,65 +1,96 @@
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import { useAppContext } from "./contexts/appContext";
-import NFTCard from "./components/NFTCard";
-import useMintToken from "./hooks/useMintToken";
+import Footer from "./components/Footer"
+import { useAppContext } from "./contexts/appContext"
+import NFTCard from "./components/NFTCard"
+import useMintToken from "./hooks/useMintToken"
+import Hero from "./components/Hero"
+import { Palette, LayoutGrid, ShoppingBag } from "lucide-react"
 
 function App() {
-    const { nextTokenId, tokenMetaData, mintPrice } = useAppContext();
+  const { nextTokenId, tokenMetaData, mintPrice } = useAppContext()
 
-    console.log("nextTokenId: ", nextTokenId);
+  console.log("nextTokenId: ", nextTokenId)
 
-    const tokenMetaDataArray = Array.from(tokenMetaData.values());
-    const mintToken = useMintToken();
+  const tokenMetaDataArray = Array.from(tokenMetaData.values())
+  const mintToken = useMintToken()
 
-    return (
-        <div>
-            <Header />
-            <main className="h-full min-h-[calc(100vh-128px)] p-4">
-                <div className="text-center">
-                    <h1 className="text-3xl font-bold">NFT dApp</h1>
-                    <p className="text-primary font-medium">
-                        Mint and manage your NFTs
-                    </p>
-                </div>
+  // const scrollToFooter = () => {
+  //   const footer = document.querySelector("footer")
+  //   if (footer) {
+  //     footer.scrollIntoView({ behavior: "smooth" })
+  //   }
+  // }
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4  mt-6">
-                    <div className="border-l-2 border-primary p-4">
-                        <h1 className="text-xl font-bold">Mint NFT</h1>
-                        <p className="text-gray-500">
-                            Mint your NFT and make it available for sale
-                        </p>
-                    </div>
-                    <div className="border-l-2 border-primary p-4">
-                        <h1 className="text-xl font-bold">Manage NFTs</h1>
-                        <p className="text-gray-500">
-                            View and manage your minted NFTs
-                        </p>
-                    </div>
-                    <div className="border-l-2 border-primary p-4">
-                        <h1 className="text-xl font-bold">Marketplace</h1>
-                        <p className="text-gray-500">
-                            Buy and sell NFTs on the marketplace
-                        </p>
-                    </div>
-                </div>
-
-                <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
-                    {tokenMetaDataArray.map((token, i) => (
-                        <NFTCard
-                            key={token.name.split(" ").join("")}
-                            metadata={token}
-                            mintPrice={mintPrice}
-                            tokenId={i}
-                            nextTokenId={nextTokenId}
-                            mintNFT={mintToken}
-                        />
-                    ))}
-                </div>
-            </main>
-            <Footer />
+  return (
+    <div className="app-container">
+      {/* Hero Section */}
+      <Hero />
+  
+      {/* Main Content */}
+      <main className="flex-1 pt-24 p-4 max-w-7xl mx-auto w-full bg-card-darker rounded-lg shadow-custom-lg">
+        {/* Explore NFTs Section */}
+        <div className="text-center mt-1 mb-16 bg-card-light p-8 rounded-lg shadow-custom">
+          <h1 className="text-4xl font-bold text-[var(--text-primary)]">Explore NFTs</h1>
+          <p className="text-[var(--text-secondary)] mt-2 max-w-2xl mx-auto">
+            Discover unique digital collectibles and the stories behind them
+          </p>
         </div>
-    );
+  
+        {/* Features Section */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 mb-30 bg-card-darker p-8 rounded-lg shadow-custom">
+          <div className="feature-card bg-card-light">
+            <div className="feature-icon-wrapper">
+              <Palette className="feature-icon" />
+            </div>
+            <h2 className="text-xl font-bold text-[var(--text-primary)]">Mint NFT</h2>
+            <p className="text-[var(--text-secondary)] mt-2">
+              Create your own digital masterpiece and make it available for collectors
+            </p>
+          </div>
+          <div className="feature-card bg-card">
+            <div className="feature-icon-wrapper">
+              <LayoutGrid className="feature-icon" />
+            </div>
+            <h2 className="text-xl font-bold text-[var(--text-primary)]">Manage NFTs</h2>
+            <p className="text-[var(--text-secondary)] mt-2">
+              View and manage your collection of minted NFTs
+            </p>
+          </div>
+          <div className="feature-card bg-card-light">
+            <div className="feature-icon-wrapper">
+              <ShoppingBag className="feature-icon" />
+            </div>
+            <h2 className="text-xl font-bold text-[var(--text-primary)]">Marketplace</h2>
+            <p className="text-[var(--text-secondary)] mt-2">
+              Buy and sell NFTs on our secure and user-friendly marketplace
+            </p>
+          </div>
+        </div>
+  
+        {/* Featured Collection Section */}
+        <div className="bg-card p-8 rounded-lg mt-16 shadow-custom-lg">
+          <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-8">Featured Collection</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+            {tokenMetaDataArray.map((token, i) => (
+              <NFTCard
+                key={token.name.split(" ").join("")}
+                metadata={token}
+                mintPrice={mintPrice}
+                tokenId={i}
+                nextTokenId={nextTokenId}
+                mintNFT={mintToken}
+              />
+            ))}
+          </div>
+        </div>
+      </main>
+  
+      {/* Footer */}
+      <Footer />
+    </div>
+  );
+  
+  
 }
 
-export default App;
+export default App
+
